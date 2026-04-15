@@ -12,6 +12,14 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const handleScroll = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container">
@@ -21,14 +29,22 @@ export default function Navbar() {
         <div className="navbar-links">
           {isHome ? (
             <>
-              <a href="#work">Work</a>
-              <a href="#about">About</a>
+              <button 
+                onClick={(e) => handleScroll(e, 'work')} 
+                style={{ background: 'none', border: 'none', cursor: 'pointer', inherit: 'font', fontFamily: 'inherit', padding: 0, color: 'inherit' }}
+                className="nav-btn"
+              >Work</button>
+              <button 
+                onClick={(e) => handleScroll(e, 'about')} 
+                style={{ background: 'none', border: 'none', cursor: 'pointer', inherit: 'font', fontFamily: 'inherit', padding: 0, color: 'inherit' }}
+                className="nav-btn"
+              >About</button>
               <a href="mailto:priyankar2322@gmail.com">Contact</a>
             </>
           ) : (
             <>
               <Link to="/">Home</Link>
-              <Link to="/#work">Work</Link>
+              <Link to="/">Work</Link>
               <a href="mailto:priyankar2322@gmail.com">Contact</a>
             </>
           )}

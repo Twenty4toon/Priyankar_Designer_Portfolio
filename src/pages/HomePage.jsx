@@ -51,16 +51,17 @@ export default function HomePage() {
               A freelance graphic designer with over three years of professional experience — specializing in illustrative art, premium packaging, and visual identity systems that help brands stand out.
             </p>
             <div className="hero-actions">
-              <motion.a 
-                href="#work" 
+              <motion.button 
+                onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
                 className="btn-primary"
+                style={{ border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <span>View Projects</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 5v14m0 0l-5-5m5 5l-5-5"/></svg>
-              </motion.a>
+              </motion.button>
               <motion.a 
                 href="mailto:priyankar2322@gmail.com" 
                 className="btn-outline"

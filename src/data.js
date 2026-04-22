@@ -116,7 +116,8 @@ export const projects = [
     color: "#FFB6C1",
     thumbnail: `${base}NIRA'S Makeover/thumbnail.jpg`,
     images: [
-      { src: `${base}NIRA'S Makeover/1.jpg`, span: "span-full" },
+      { src: `${base}NIRA'S Makeover/2.jpg`, span: "" },
+      { src: `${base}NIRA'S Makeover/3.jpg`, span: "" },
     ]
   },
   {
@@ -244,9 +245,10 @@ export const projects = [
     color: "#8FBC8F",
     thumbnail: `${base}Sprout Brochure/thumbnail.jpg`,
     images: [
-      { src: `${base}Sprout Brochure/1.jpg`, span: "span-full" },
+      { src: `${base}Sprout Brochure/1.jpg`, span: "" },
       { src: `${base}Sprout Brochure/2.jpg`, span: "" },
-      { src: `${base}Sprout Brochure/3.jpg`, span: "" },
+      { src: `${base}Sprout Brochure/4.jpg`, span: "" },
+      { src: `${base}Sprout Brochure/5.jpg`, span: "" },
     ]
   },
   {
@@ -258,7 +260,11 @@ export const projects = [
     color: "#DEB887",
     thumbnail: `${base}THE HARA AESTHETIC Makeup artist/thumbnail.jpg`,
     images: [
-      { src: `${base}THE HARA AESTHETIC Makeup artist/1.jpg`, span: "span-full" },
+      { src: `${base}THE HARA AESTHETIC Makeup artist/2.jpg`, span: "" },
+      { src: `${base}THE HARA AESTHETIC Makeup artist/3.jpg`, span: "" },
+      { src: `${base}THE HARA AESTHETIC Makeup artist/4.jpg`, span: "" },
+      { src: `${base}THE HARA AESTHETIC Makeup artist/5.jpg`, span: "" },
+      { src: `${base}THE HARA AESTHETIC Makeup artist/6.jpg`, span: "" },
     ]
   }
 ]

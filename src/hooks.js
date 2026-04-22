@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef } from 'react'
 
-/* Scroll reveal with IntersectionObserver */
 export function useScrollReveal() {
   const ref = useRef(null)
 
@@ -24,7 +23,6 @@ export function useScrollReveal() {
   return ref
 }
 
-/* Custom cursor glow that follows the mouse */
 export function useCursorGlow() {
   const glowRef = useRef(null)
 
@@ -42,7 +40,6 @@ export function useCursorGlow() {
   return glowRef
 }
 
-/* Magnetic button effect */
 export function useMagnet(strength = 0.3) {
   const ref = useRef(null)
 
@@ -77,7 +74,6 @@ export function useMagnet(strength = 0.3) {
   return ref
 }
 
-/* Parallax scroll effect */
 export function useParallax(speed = 0.3) {
   const ref = useRef(null)
 
@@ -96,7 +92,6 @@ export function useParallax(speed = 0.3) {
   return ref
 }
 
-/* Staggered children animation */
 export function useStagger(delay = 80) {
   const ref = useRef(null)
 

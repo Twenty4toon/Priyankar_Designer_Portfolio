@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Twenty4toon.github.io/Priyankar_Illustrator_Portfolio",
+  "homepage": "https://Twenty4toon.github.io/Priyankar_Designer_Portfolio",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

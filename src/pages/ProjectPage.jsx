@@ -10,7 +10,7 @@ export default function ProjectPage() {
   const pageRef = useScrollReveal()
   const [currentSlide, setCurrentSlide] = useState(0)
   const [direction, setDirection] = useState(0)
-  const [lightboxImg, setLightboxImg] = useState(null)
+  const [lightboxIndex, setLightboxIndex] = useState(null)
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
@@ -36,13 +36,25 @@ export default function ProjectPage() {
 
   useEffect(() => {
     const handleKey = (e) => {
-      if (e.key === 'Escape') setLightboxImg(null)
-      if (e.key === 'ArrowRight') goNext()
-      if (e.key === 'ArrowLeft') goPrev()
+      if (e.key === 'Escape') setLightboxIndex(null)
+      if (e.key === 'ArrowRight') {
+        if (lightboxIndex !== null) {
+          if (lightboxIndex < project.images.length - 1) setLightboxIndex(prev => prev + 1)
+        } else {
+          goNext()
+        }
+      }
+      if (e.key === 'ArrowLeft') {
+        if (lightboxIndex !== null) {
+          if (lightboxIndex > 0) setLightboxIndex(prev => prev - 1)
+        } else {
+          goPrev()
+        }
+      }
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [goNext, goPrev])
+  }, [goNext, goPrev, lightboxIndex, project])
 
   if (!project) {
     return (
@@ -137,11 +149,20 @@ export default function ProjectPage() {
                   exit="exit"
                   transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
                   className="slider-image-wrapper"
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={1}
+                  onDragEnd={(e, { offset, velocity }) => {
+                    if (offset.x < -50 || velocity.x < -500) goNext();
+                    else if (offset.x > 50 || velocity.x > 500) goPrev();
+                  }}
                 >
                   <img
                     src={project.images[currentSlide].src}
                     alt={`${project.title} - ${currentSlide + 1}`}
-                    onClick={() => setLightboxImg(project.images[currentSlide].src)}
+                    onClick={() => setLightboxIndex(currentSlide)}
+                    style={{ cursor: 'zoom-in', pointerEvents: 'auto' }}
+                    draggable="false"
                   />
                 </motion.div>
               </AnimatePresence>
@@ -223,29 +244,67 @@ export default function ProjectPage() {
 
       {/* Lightbox */}
       <AnimatePresence>
-        {lightboxImg && (
+        {lightboxIndex !== null && (
           <motion.div 
             className="lightbox-overlay" 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setLightboxImg(null)}
+            onClick={() => setLightboxIndex(null)}
           >
             <motion.button 
               className="lightbox-close"
               whileHover={{ rotate: 90, scale: 1.1 }}
-              onClick={() => setLightboxImg(null)}
+              onClick={() => setLightboxIndex(null)}
             >
               ✕
             </motion.button>
+            
+            {lightboxIndex > 0 && (
+              <motion.button 
+                className="lightbox-arrow lightbox-arrow-left"
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex(prev => prev - 1); }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </motion.button>
+            )}
+
             <motion.img 
-              src={lightboxImg} 
+              key={lightboxIndex}
+              src={project.images[lightboxIndex].src} 
               alt="Full view" 
               onClick={(e) => e.stopPropagation()}
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={(e, { offset, velocity }) => {
+                if (offset.x < -50 || velocity.x < -500) {
+                  if (lightboxIndex < project.images.length - 1) setLightboxIndex(prev => prev + 1);
+                } else if (offset.x > 50 || velocity.x > 500) {
+                  if (lightboxIndex > 0) setLightboxIndex(prev => prev - 1);
+                }
+              }}
             />
+
+            {lightboxIndex < project.images.length - 1 && (
+              <motion.button 
+                className="lightbox-arrow lightbox-arrow-right"
+                onClick={(e) => { e.stopPropagation(); setLightboxIndex(prev => prev + 1); }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </motion.button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>

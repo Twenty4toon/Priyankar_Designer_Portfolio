@@ -50,7 +50,7 @@ export const projects = [
     color: "#DDA0DD",
     thumbnail: `${base}Glozone Beauty Lounge/thumbnail.jpg`,
     images: [
-      { src: `${base}Glozone Beauty Lounge/1.jpg`, span: "span-full" },
+      { src: `${base}Glozone Beauty Lounge/1.webp`, span: "span-full" },
     ]
   },
   {
@@ -63,14 +63,14 @@ export const projects = [
     thumbnail: `${base}mirakle coq10/thumbnail.gif`,
     images: [
       { src: `${base}mirakle coq10/1.gif`, span: "span-full" },
-      { src: `${base}mirakle coq10/2.jpg`, span: "" },
-      { src: `${base}mirakle coq10/3.jpg`, span: "" },
-      { src: `${base}mirakle coq10/4.jpg`, span: "" },
-      { src: `${base}mirakle coq10/5.jpg`, span: "" },
-      { src: `${base}mirakle coq10/6.jpg`, span: "" },
-      { src: `${base}mirakle coq10/7.jpg`, span: "span-full" },
-      { src: `${base}mirakle coq10/8.jpg`, span: "" },
-      { src: `${base}mirakle coq10/9.jpg`, span: "" },
+      { src: `${base}mirakle coq10/2.webp`, span: "" },
+      { src: `${base}mirakle coq10/3.webp`, span: "" },
+      { src: `${base}mirakle coq10/4.webp`, span: "" },
+      { src: `${base}mirakle coq10/5.webp`, span: "" },
+      { src: `${base}mirakle coq10/6.webp`, span: "" },
+      { src: `${base}mirakle coq10/7.webp`, span: "span-full" },
+      { src: `${base}mirakle coq10/8.webp`, span: "" },
+      { src: `${base}mirakle coq10/9.webp`, span: "" },
     ]
   },
   {
@@ -148,7 +148,7 @@ export const projects = [
     color: "#2F4F4F",
     thumbnail: `${base}Sha OUTLET branding design/thumbnail.jpg`,
     images: [
-      { src: `${base}Sha OUTLET branding design/1.jpg`, span: "span-full" },
+      { src: `${base}Sha OUTLET branding design/1.webp`, span: "span-full" },
     ]
   },
   {
@@ -160,7 +160,7 @@ export const projects = [
     color: "#556B2F",
     thumbnail: `${base}Sivakannan-business card/thumbnail.jpg`,
     images: [
-      { src: `${base}Sivakannan-business card/1.jpg`, span: "span-full" },
+      { src: `${base}Sivakannan-business card/1.webp`, span: "span-full" },
     ]
   },
   {
@@ -247,8 +247,8 @@ export const projects = [
     images: [
       { src: `${base}Sprout Brochure/1.webp`, span: "" },
       { src: `${base}Sprout Brochure/2.webp`, span: "" },
+      { src: `${base}Sprout Brochure/3.webp`, span: "" },
       { src: `${base}Sprout Brochure/4.webp`, span: "" },
-      { src: `${base}Sprout Brochure/5.webp`, span: "" },
     ]
   },
   {

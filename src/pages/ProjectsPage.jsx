@@ -13,7 +13,7 @@ export default function ProjectsPage() {
   }, [])
 
   return (
-    <div className="projects-page-container" style={{ backgroundColor: 'var(--bg-primary)', minHeight: '100vh', paddingTop: '5rem', paddingBottom: '3rem' }}>
+    <div className="projects-page-container" style={{ backgroundColor: 'transparent', minHeight: '100vh', paddingTop: '5rem', paddingBottom: '3rem' }}>
       <div className="container">
         <header className="section-header" style={{ marginBottom: '3rem', textAlign: 'center' }}>
           <motion.h1 
@@ -42,7 +42,7 @@ export default function ProjectsPage() {
                     <img src={project.thumbnail} alt={project.title} loading="lazy" />
                   </div>
                   <div className="project-card-left">
-                    <span className="project-number">{project.number}</span>
+
                     <h3 className="project-card-title">{project.title}</h3>
                     <p className="project-card-tagline">{project.tagline}</p>
                     <div className="project-tags">

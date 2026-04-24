@@ -25,8 +25,8 @@ export default function HomePage() {
   useEffect(() => {
     const handleMouseMove = (e) => {
       setMousePos({
-        x: (e.clientX / window.innerWidth - 0.5) * 40,
-        y: (e.clientY / window.innerHeight - 0.5) * 40
+        x: (e.clientX / window.innerWidth - 0.5) * 80,
+        y: (e.clientY / window.innerHeight - 0.5) * 80
       })
     }
     window.addEventListener('mousemove', handleMouseMove)
@@ -34,24 +34,58 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div ref={pageRef} style={{ backgroundColor: 'var(--bg-primary)' }}>
+    <div ref={pageRef} style={{ backgroundColor: 'transparent' }}>
       {/* ── Interactive Motion Background ── */}
       <div className="interactive-bg">
         <motion.div 
           className="bg-orb bg-orb-1"
-          animate={{ x: mousePos.x, y: mousePos.y }}
-          transition={{ type: "spring", stiffness: 50, damping: 20 }}
+          animate={{ x: mousePos.x * 1.2, y: mousePos.y * 1.2 }}
+          transition={{ type: "spring", stiffness: 60, damping: 25 }}
         />
         <motion.div 
           className="bg-orb bg-orb-2"
-          animate={{ x: -mousePos.x * 1.5, y: -mousePos.y * 1.5 }}
-          transition={{ type: "spring", stiffness: 40, damping: 25 }}
+          animate={{ x: -mousePos.x * 2, y: -mousePos.y * 1.5 }}
+          transition={{ type: "spring", stiffness: 50, damping: 30 }}
         />
         <motion.div 
           className="bg-orb bg-orb-3"
-          animate={{ x: mousePos.x * 0.8, y: -mousePos.y * 0.8 }}
-          transition={{ type: "spring", stiffness: 30, damping: 15 }}
+          animate={{ x: mousePos.x * 1.5, y: -mousePos.y * 1.2 }}
+          transition={{ type: "spring", stiffness: 40, damping: 20 }}
         />
+        
+        {/* Floating White Particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="gold-particle"
+            initial={{ 
+              x: Math.random() * window.innerWidth, 
+              y: Math.random() * window.innerHeight,
+              opacity: Math.random() * 0.4
+            }}
+            animate={{ 
+              x: mousePos.x * (i % 5 + 1) * 8, 
+              y: mousePos.y * (i % 4 + 1) * 8,
+              opacity: [0.1, 0.4, 0.1]
+            }}
+            transition={{ 
+              duration: 3 + Math.random() * 3, 
+              repeat: Infinity,
+              type: "spring",
+              stiffness: 20
+            }}
+            style={{
+              position: 'absolute',
+              width: '3px',
+              height: '3px',
+              borderRadius: '50%',
+              background: '#FFFFFF',
+              boxShadow: '0 0 15px rgba(255, 255, 255, 0.8)',
+              pointerEvents: 'none',
+              zIndex: -1
+            }}
+          />
+        ))}
       </div>
 
       {/* ── Hero ── */}
@@ -105,9 +139,9 @@ export default function HomePage() {
               <span className="hero-title-line">
                 <motion.span 
                   className="hero-title-word gradient-text"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6, type: "spring", stiffness: 100 }}
                 >
                   Illustrator
                 </motion.span>
@@ -198,14 +232,7 @@ export default function HomePage() {
                         <img src={project.thumbnail} alt={project.title} />
                       </motion.div>
                       <motion.div className="project-card-left">
-                        <motion.span 
-                          className="project-number"
-                          initial={{ opacity: 0, x: -10 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.1 }}
-                        >
-                          {project.number}
-                        </motion.span>
+
                         <motion.h3 
                           className="project-card-title"
                           whileHover={{ color: 'var(--accent)' }}
@@ -362,7 +389,7 @@ export default function HomePage() {
             </motion.a>
           </motion.div>
           <div className="footer-bottom">
-            <span className="footer-copy">© {new Date().getFullYear()} Priyanka R</span>
+            <span className="footer-copy">Designed and Developed by Priyanka R</span>
           </div>
         </div>
       </footer>
